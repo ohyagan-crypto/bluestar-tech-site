@@ -1,26 +1,21 @@
-const serviceData = {
-  creator: {
-    kicker: "創作者與品牌主",
-    title: "AI 網紅內容系統",
-    description: "建立短影音腳本、數字人、海報、社群貼文與發佈節奏，讓內容產能變得穩定。",
-    points: ["短影音腳本與鏡頭規劃", "AI 圖像、海報與素材規格", "社群內容排程與轉換路徑"],
-  },
-  business: {
-    kicker: "企業與門市團隊",
-    title: "AI 流程自動化",
-    description: "把常見諮詢、資料整理、表單回覆與客戶通知變成可追蹤的標準流程。",
-    points: ["客戶需求表單與自動回覆", "內部任務檢查表與資料整理", "銷售、客服與行政流程優化"],
-  },
-  course: {
-    kicker: "講師與培訓單位",
-    title: "AI 課程與陪跑",
-    description: "用真實工作任務設計課程，讓學員在課後能直接完成自己的內容或流程。",
-    points: ["企業內訓與主題工作坊", "課後作業模板與學員追蹤", "講師教材、簡報與活動頁製作"],
-  },
-};
-
 const navToggle = document.querySelector(".nav-toggle");
 const siteNav = document.querySelector(".site-nav");
+const slides = Array.from(document.querySelectorAll(".slide"));
+const dots = Array.from(document.querySelectorAll("[data-slide-target]"));
+const prevButton = document.querySelector(".slider-button.prev");
+const nextButton = document.querySelector(".slider-button.next");
+let activeSlide = 0;
+let slideTimer;
+
+function refreshIcons() {
+  window.lucide?.createIcons();
+}
+
+function closeMenu() {
+  siteNav?.classList.remove("open");
+  document.body.classList.remove("menu-open");
+  navToggle?.setAttribute("aria-expanded", "false");
+}
 
 navToggle?.addEventListener("click", () => {
   const isOpen = siteNav.classList.toggle("open");
@@ -29,42 +24,59 @@ navToggle?.addEventListener("click", () => {
 });
 
 siteNav?.querySelectorAll("a").forEach((link) => {
-  link.addEventListener("click", () => {
-    siteNav.classList.remove("open");
-    document.body.classList.remove("menu-open");
-    navToggle?.setAttribute("aria-expanded", "false");
+  link.addEventListener("click", closeMenu);
+});
+
+function showSlide(index) {
+  activeSlide = (index + slides.length) % slides.length;
+  slides.forEach((slide, slideIndex) => {
+    const isActive = slideIndex === activeSlide;
+    slide.classList.toggle("is-active", isActive);
+    slide.setAttribute("aria-hidden", String(!isActive));
+  });
+  dots.forEach((dot, dotIndex) => {
+    dot.classList.toggle("is-active", dotIndex === activeSlide);
+  });
+}
+
+function restartSlider() {
+  window.clearInterval(slideTimer);
+  slideTimer = window.setInterval(() => showSlide(activeSlide + 1), 7000);
+}
+
+prevButton?.addEventListener("click", () => {
+  showSlide(activeSlide - 1);
+  restartSlider();
+});
+
+nextButton?.addEventListener("click", () => {
+  showSlide(activeSlide + 1);
+  restartSlider();
+});
+
+dots.forEach((dot) => {
+  dot.addEventListener("click", () => {
+    showSlide(Number(dot.dataset.slideTarget || 0));
+    restartSlider();
   });
 });
 
-const tabs = document.querySelectorAll(".service-tab");
-const serviceKicker = document.querySelector("#service-kicker");
-const serviceTitle = document.querySelector("#service-title");
-const serviceDescription = document.querySelector("#service-description");
-const servicePoints = document.querySelector("#service-points");
+const solutionSearch = document.querySelector("#solution-search");
+const solutionInput = document.querySelector("#solution-input");
+const searchResult = document.querySelector("#search-result");
 
-function renderService(key) {
-  const service = serviceData[key];
-  if (!service || !serviceKicker || !serviceTitle || !serviceDescription || !servicePoints) return;
+const solutionMap = [
+  { keys: ["內容", "自媒體", "短影音", "海報"], label: "建議先看「內容營運」，適合建立腳本、圖片、短影音與發佈節奏。" },
+  { keys: ["流程", "自動化", "客服", "表單"], label: "建議先看「企業流程」，適合整理表單、通知、客服回覆與資料處理。" },
+  { keys: ["課程", "內訓", "教學", "講師"], label: "建議先看「藍星學院」，適合規劃課程、教材、作業與陪跑流程。" },
+];
 
-  serviceKicker.textContent = service.kicker;
-  serviceTitle.textContent = service.title;
-  serviceDescription.textContent = service.description;
-  servicePoints.innerHTML = service.points
-    .map((point) => `<li><i data-lucide="check"></i><span>${point}</span></li>`)
-    .join("");
-  window.lucide?.createIcons();
-}
-
-tabs.forEach((tab) => {
-  tab.addEventListener("click", () => {
-    tabs.forEach((item) => {
-      item.classList.remove("active");
-      item.setAttribute("aria-selected", "false");
-    });
-    tab.classList.add("active");
-    tab.setAttribute("aria-selected", "true");
-    renderService(tab.dataset.service);
-  });
+solutionSearch?.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const query = solutionInput?.value.trim() || "";
+  const matched = solutionMap.find((item) => item.keys.some((key) => query.includes(key)));
+  searchResult.textContent = matched?.label || "已收到查找需求，建議先留下聯絡方式，我們會協助判斷最適合的方案。";
+  document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth", block: "start" });
 });
 
 const leadForm = document.querySelector("#lead-form");
@@ -102,4 +114,6 @@ subscribeForm?.addEventListener("submit", (event) => {
   subscribeForm.reset();
 });
 
-window.lucide?.createIcons();
+showSlide(0);
+restartSlider();
+refreshIcons();
