@@ -2,30 +2,31 @@ import { test, expect } from "@playwright/test";
 
 const baseUrl = process.env.SITE_URL || "http://127.0.0.1:4174";
 
-test("homepage loads and lead form works", async ({ page }) => {
+test("homepage matches the BNI-style structure", async ({ page }) => {
   await page.goto(baseUrl);
-  await expect(page.getByRole("heading", { name: "改變企業導入 AI 的方式" })).toBeVisible();
-  await expect(page.getByRole("link", { name: /Get Invited/ })).toBeVisible();
-
-  await page.locator("#find").scrollIntoViewIfNeeded();
+  await expect(page.getByRole("link", { name: "Get Invited" }).first()).toBeVisible();
+  await expect(page.getByRole("heading", { name: "藍星科技 - 臺灣領先的 AI 導入與商務流程平台" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Links" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Newsletter" })).toBeVisible();
+});
 
-  await page.getByLabel("姓名").fill("藍星測試");
-  await page.getByLabel("聯絡方式").fill("0970-700-419");
-  await page.getByLabel("需求類型").selectOption("企業流程自動化");
-  await page.getByLabel("目前想解決的問題").fill("想把客戶諮詢和回覆流程整理成 AI 工作流。");
-  await page.getByRole("button", { name: /送出需求/ }).click();
-  await expect(page.locator("#form-status")).toContainText("已收到 藍星測試 的需求");
+test("getting started overlay opens and search works", async ({ page }) => {
+  await page.goto(baseUrl);
+  await page.getByRole("link", { name: "Get Invited" }).first().click();
+  await expect(page.getByRole("heading", { name: "Getting Started Easy" })).toBeVisible();
+  await page.getByPlaceholder("查找方案").fill("企業流程");
+  await page.getByRole("button", { name: "送出查找" }).click();
+  await expect(page.locator("#search-message")).toContainText("企業流程");
 });
 
 test("mobile navigation opens", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto(baseUrl);
   await page.getByRole("button", { name: "開啟選單" }).click();
-  const mainNav = page.getByRole("navigation", { name: "主要導覽" });
-  await expect(mainNav).toBeVisible();
-  await mainNav.getByRole("link", { name: "查找方案" }).click();
-  await expect(page.locator("#find")).toBeInViewport();
+  const mobileNav = page.getByRole("navigation", { name: "手機導覽" });
+  await expect(mobileNav).toBeVisible();
+  await mobileNav.getByRole("link", { name: "查找方案" }).click();
+  await expect(page.locator("#chapter")).toBeInViewport();
 });
 
 test("layout has no horizontal overflow", async ({ page }) => {

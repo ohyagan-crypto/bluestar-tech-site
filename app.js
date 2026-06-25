@@ -1,55 +1,95 @@
-const navToggle = document.querySelector(".nav-toggle");
-const siteNav = document.querySelector(".site-nav");
+const accountToggle = document.querySelector("[data-account-toggle]");
+const accountDropdown = document.querySelector(".account-dropdown");
+const menuToggle = document.querySelector("[data-menu-toggle]");
+const mobileMenu = document.querySelector("[data-mobile-menu]");
+const overlay = document.querySelector("[data-getting-overlay]");
+const openOverlayLinks = document.querySelectorAll("[data-open-getting]");
+const closeOverlayButton = document.querySelector("[data-overlay-close]");
 const slides = Array.from(document.querySelectorAll(".slide"));
 const dots = Array.from(document.querySelectorAll("[data-slide-target]"));
-const prevButton = document.querySelector(".slider-button.prev");
-const nextButton = document.querySelector(".slider-button.next");
+const prevSlideButton = document.querySelector("[data-prev-slide]");
+const nextSlideButton = document.querySelector("[data-next-slide]");
 let activeSlide = 0;
 let slideTimer;
 
-function refreshIcons() {
+function createIcons() {
   window.lucide?.createIcons();
 }
-
-function closeMenu() {
-  siteNav?.classList.remove("open");
-  document.body.classList.remove("menu-open");
-  navToggle?.setAttribute("aria-expanded", "false");
-}
-
-navToggle?.addEventListener("click", () => {
-  const isOpen = siteNav.classList.toggle("open");
-  document.body.classList.toggle("menu-open", isOpen);
-  navToggle.setAttribute("aria-expanded", String(isOpen));
-});
-
-siteNav?.querySelectorAll("a").forEach((link) => {
-  link.addEventListener("click", closeMenu);
-});
 
 function showSlide(index) {
   activeSlide = (index + slides.length) % slides.length;
   slides.forEach((slide, slideIndex) => {
     const isActive = slideIndex === activeSlide;
-    slide.classList.toggle("is-active", isActive);
+    slide.classList.toggle("active", isActive);
     slide.setAttribute("aria-hidden", String(!isActive));
   });
   dots.forEach((dot, dotIndex) => {
-    dot.classList.toggle("is-active", dotIndex === activeSlide);
+    dot.classList.toggle("active", dotIndex === activeSlide);
   });
 }
 
 function restartSlider() {
   window.clearInterval(slideTimer);
-  slideTimer = window.setInterval(() => showSlide(activeSlide + 1), 7000);
+  slideTimer = window.setInterval(() => showSlide(activeSlide + 1), 9000);
 }
 
-prevButton?.addEventListener("click", () => {
+function openGettingOverlay() {
+  overlay?.classList.add("open");
+  overlay?.setAttribute("aria-hidden", "false");
+  document.body.classList.add("overlay-open");
+}
+
+function closeGettingOverlay() {
+  overlay?.classList.remove("open");
+  overlay?.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("overlay-open");
+}
+
+accountToggle?.addEventListener("click", () => {
+  const isOpen = accountDropdown?.classList.toggle("open") || false;
+  accountToggle.setAttribute("aria-expanded", String(isOpen));
+});
+
+menuToggle?.addEventListener("click", () => {
+  const isOpen = mobileMenu?.classList.toggle("open") || false;
+  document.body.classList.toggle("menu-open", isOpen);
+  menuToggle.setAttribute("aria-expanded", String(isOpen));
+});
+
+mobileMenu?.querySelectorAll("a").forEach((link) => {
+  link.addEventListener("click", () => {
+    mobileMenu.classList.remove("open");
+    document.body.classList.remove("menu-open");
+    menuToggle?.setAttribute("aria-expanded", "false");
+  });
+});
+
+openOverlayLinks.forEach((link) => {
+  link.addEventListener("click", (event) => {
+    event.preventDefault();
+    openGettingOverlay();
+  });
+});
+
+closeOverlayButton?.addEventListener("click", closeGettingOverlay);
+
+overlay?.addEventListener("click", (event) => {
+  if (event.target === overlay) closeGettingOverlay();
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    closeGettingOverlay();
+    accountDropdown?.classList.remove("open");
+  }
+});
+
+prevSlideButton?.addEventListener("click", () => {
   showSlide(activeSlide - 1);
   restartSlider();
 });
 
-nextButton?.addEventListener("click", () => {
+nextSlideButton?.addEventListener("click", () => {
   showSlide(activeSlide + 1);
   restartSlider();
 });
@@ -61,59 +101,29 @@ dots.forEach((dot) => {
   });
 });
 
-const solutionSearch = document.querySelector("#solution-search");
-const solutionInput = document.querySelector("#solution-input");
-const searchResult = document.querySelector("#search-result");
+const chapterSearch = document.querySelector("#chapter-search");
+const searchMessage = document.querySelector("#search-message");
 
-const solutionMap = [
-  { keys: ["內容", "自媒體", "短影音", "海報"], label: "建議先看「內容營運」，適合建立腳本、圖片、短影音與發佈節奏。" },
-  { keys: ["流程", "自動化", "客服", "表單"], label: "建議先看「企業流程」，適合整理表單、通知、客服回覆與資料處理。" },
-  { keys: ["課程", "內訓", "教學", "講師"], label: "建議先看「藍星學院」，適合規劃課程、教材、作業與陪跑流程。" },
-];
-
-solutionSearch?.addEventListener("submit", (event) => {
+chapterSearch?.addEventListener("submit", (event) => {
   event.preventDefault();
-  const query = solutionInput?.value.trim() || "";
-  const matched = solutionMap.find((item) => item.keys.some((key) => query.includes(key)));
-  searchResult.textContent = matched?.label || "已收到查找需求，建議先留下聯絡方式，我們會協助判斷最適合的方案。";
-  document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  const query = new FormData(chapterSearch).get("search");
+  const text = String(query || "").trim();
+  searchMessage.textContent = text
+    ? `已收到「${text}」查找需求，建議從藍星科技顧問諮詢開始。`
+    : "請先輸入想查找的方案方向。";
 });
 
-const leadForm = document.querySelector("#lead-form");
-const formStatus = document.querySelector("#form-status");
+const newsletterForm = document.querySelector("#newsletter-form");
+const newsletterMessage = document.querySelector("#newsletter-message");
 
-leadForm?.addEventListener("submit", (event) => {
+newsletterForm?.addEventListener("submit", (event) => {
   event.preventDefault();
-  const formData = new FormData(leadForm);
-  const lead = {
-    name: String(formData.get("name") || "").trim(),
-    contact: String(formData.get("contact") || "").trim(),
-    need: String(formData.get("need") || "").trim(),
-    message: String(formData.get("message") || "").trim(),
-    createdAt: new Date().toISOString(),
-  };
-
-  if (!lead.name || !lead.contact || !lead.need || !lead.message) {
-    formStatus.textContent = "請先填完所有欄位。";
-    return;
-  }
-
-  const leads = JSON.parse(localStorage.getItem("bluestar-leads") || "[]");
-  leads.unshift(lead);
-  localStorage.setItem("bluestar-leads", JSON.stringify(leads.slice(0, 20)));
-  formStatus.textContent = `已收到 ${lead.name} 的需求，藍星科技會依照「${lead.need}」回覆建議。`;
-  leadForm.reset();
-});
-
-const subscribeForm = document.querySelector("#subscribe-form");
-
-subscribeForm?.addEventListener("submit", (event) => {
-  event.preventDefault();
-  const email = new FormData(subscribeForm).get("email");
-  localStorage.setItem("bluestar-newsletter", String(email || ""));
-  subscribeForm.reset();
+  const email = String(new FormData(newsletterForm).get("email") || "").trim();
+  localStorage.setItem("bluestar-newsletter", email);
+  newsletterForm.reset();
+  newsletterMessage.textContent = "已收到訂閱資料。";
 });
 
 showSlide(0);
 restartSlider();
-refreshIcons();
+createIcons();

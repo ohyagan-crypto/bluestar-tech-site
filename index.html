@@ -5,304 +5,258 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="藍星科技協助企業、講師與創作者導入 AI 工具、自動化流程、AI 內容與數位轉型陪跑。"
+      content="藍星科技協助企業與創作者導入 AI 工具、自動化流程、內容營運與數位課程陪跑。"
     />
-    <title>藍星科技｜改變企業導入 AI 的方式</title>
+    <title>藍星科技：改變企業導入 AI 的方式</title>
     <link rel="icon" href="assets/bluestar-logo.png" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <header class="site-header">
-      <div class="utility-bar" aria-label="快速連結">
-        <div class="shell utility-inner">
-          <span>臺灣 AI 導入與數位流程顧問</span>
-          <nav aria-label="外部連結">
-            <a href="#newsletter">電子報</a>
-            <a href="#contact">預約諮詢</a>
-            <a href="https://lanxinai.com/dashboard" target="_blank" rel="noreferrer">藍星 AI 平台</a>
-          </nav>
+    <div class="page">
+      <header class="site-header">
+        <div class="top-row">
+          <div class="holder top-holder">
+            <div></div>
+            <div class="top-links">
+              <a href="https://lanxinai.com/dashboard" target="_blank" rel="noreferrer">藍星 AI Platform</a>
+              <div class="account-menu">
+                <button type="button" aria-expanded="false" data-account-toggle>
+                  Account Login <i data-lucide="chevron-down"></i>
+                </button>
+                <ul class="account-dropdown" aria-label="帳號入口">
+                  <li><a href="#newsletter">Newsletter</a></li>
+                  <li><a href="#links">Business Builder</a></li>
+                  <li><a href="#contact">Contact Blue Star</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
 
-      <div class="main-nav">
-        <div class="shell nav-inner">
-          <a class="brand" href="#top" aria-label="回到藍星科技首頁">
-            <img src="assets/bluestar-logo.png" alt="藍星科技" />
-            <span>藍星科技</span>
-          </a>
-          <button class="nav-toggle" type="button" aria-label="開啟選單" aria-expanded="false">
-            <i data-lucide="menu"></i>
+        <div class="bottom-row">
+          <div class="holder nav-holder">
+            <a class="brand-logo" href="#top" aria-label="藍星科技首頁">
+              <img src="assets/bluestar-logo.png" alt="藍星科技" />
+              <span class="brand-name">臺灣</span>
+            </a>
+            <button class="mobile-menu-button" type="button" aria-label="開啟選單" aria-expanded="false" data-menu-toggle>
+              <i data-lucide="menu"></i>
+            </button>
+            <nav class="main-nav" aria-label="主要導覽">
+              <a href="#why">為什麼選擇藍星?</a>
+              <a href="#chapter">查找方案</a>
+              <a href="#testimonials">會員見證</a>
+              <a href="#contact">聯絡我們</a>
+            </nav>
+          </div>
+        </div>
+      </header>
+
+      <section class="getting-overlay" aria-hidden="true" data-getting-overlay>
+        <div class="overlay-card" role="dialog" aria-modal="true" aria-labelledby="getting-title">
+          <button class="overlay-close" type="button" aria-label="關閉" data-overlay-close>
+            <i data-lucide="x"></i>
           </button>
-          <nav class="site-nav" aria-label="主要導覽">
-            <a href="#why">為什麼選擇藍星</a>
-            <a href="#find">查找方案</a>
-            <a href="#stories">案例場景</a>
-            <a href="#links">資源入口</a>
-            <a href="#contact">聯絡我們</a>
-          </nav>
-        </div>
-      </div>
-    </header>
-
-    <main id="top">
-      <section class="hero-slider" aria-labelledby="hero-title">
-        <article class="slide is-active" data-slide="0">
-          <div class="slide-bg slide-bg-one"></div>
-          <div class="slide-shade"></div>
-          <div class="shell hero-content">
-            <p class="eyebrow">Blue Star Technology</p>
-            <h1 id="hero-title">改變企業導入 AI 的方式</h1>
-            <p>
-              從 AI 自媒體、企業流程到課程陪跑，藍星科技把工具、素材與人員訓練整理成能落地的營運系統。
-            </p>
-            <a class="cta-button" href="#contact">
-              <span>Get Invited</span>
-              <i data-lucide="arrow-right"></i>
-            </a>
+          <div class="overlay-image">
+            <img src="assets/ai-course-poster.png" alt="藍星科技 AI 導入服務" />
           </div>
-        </article>
-
-        <article class="slide" data-slide="1" aria-hidden="true">
-          <div class="slide-bg slide-bg-two"></div>
-          <div class="slide-shade"></div>
-          <div class="shell hero-content">
-            <p class="eyebrow">AI Business Network</p>
-            <h2>讓每一次內容、成交與服務都有流程支撐</h2>
-            <p>
-              用清楚的模板、表單、自動化與教練式陪跑，把 AI 從一次性工具變成團隊每天用得上的產能。
-            </p>
-            <a class="cta-button" href="#find">
-              <span>查找適合方案</span>
-              <i data-lucide="search"></i>
-            </a>
-          </div>
-        </article>
-
-        <button class="slider-button prev" type="button" aria-label="上一張">
-          <i data-lucide="chevron-left"></i>
-        </button>
-        <button class="slider-button next" type="button" aria-label="下一張">
-          <i data-lucide="chevron-right"></i>
-        </button>
-
-        <div class="slider-dots" aria-label="主視覺切換">
-          <button class="is-active" type="button" data-slide-target="0" aria-label="顯示第一張"></button>
-          <button type="button" data-slide-target="1" aria-label="顯示第二張"></button>
-        </div>
-      </section>
-
-      <section class="getting-started" aria-labelledby="start-title">
-        <div class="shell started-layout">
-          <div class="started-image">
-            <img src="assets/ai-course-poster.png" alt="藍星科技 AI 課程與內容服務" />
-          </div>
-          <div class="started-panel">
-            <p class="eyebrow">Getting Started Easy</p>
-            <h2 id="start-title">從查找方向到完成導入</h2>
-            <ul class="start-steps">
+          <div class="overlay-content">
+            <h2 id="getting-title">Getting Started Easy</h2>
+            <ul class="easy-steps">
               <li>
                 <span><i data-lucide="search"></i></span>
-                <strong>Find a Solution</strong>
-                <small>查找最適合的 AI 導入方向</small>
+                <p>Find a<br />Solution</p>
               </li>
               <li>
-                <span><i data-lucide="send"></i></span>
-                <strong>Submit a Request</strong>
-                <small>送出需求與目前卡點</small>
+                <span><i data-lucide="mail"></i></span>
+                <p>Submit a<br />Request</p>
               </li>
               <li>
                 <span><i data-lucide="badge-check"></i></span>
-                <strong>Complete the Plan</strong>
-                <small>完成第一版可執行流程</small>
+                <p>Complete the<br />Registration</p>
               </li>
             </ul>
-            <form class="solution-search" id="solution-search">
-              <label for="solution-input">參訪方案</label>
-              <div class="input-row">
-                <input id="solution-input" type="search" placeholder="輸入：內容、流程、課程、表單" />
-                <button type="submit" aria-label="查找方案">
-                  <i data-lucide="arrow-right"></i>
-                </button>
-              </div>
+            <h3>參訪方案</h3>
+            <form class="chapter-search" id="chapter-search">
+              <input name="search" type="search" placeholder="查找方案" />
+              <button type="submit" aria-label="送出查找">
+                <i data-lucide="arrow-right"></i>
+              </button>
             </form>
-            <p class="search-result" id="search-result" role="status"></p>
+            <p class="search-message" id="search-message" role="status"></p>
           </div>
         </div>
       </section>
 
-      <section class="page-title" id="why">
-        <div class="shell">
-          <h2>藍星科技 - 企業 AI 導入與內容營運平台</h2>
-        </div>
-      </section>
-
-      <section class="intro-copy">
-        <div class="shell text-shell">
-          <p>
-            藍星科技協助企業主、講師、創作者與地方商家把 AI 導入日常營運。服務重點不是只教單一工具，而是把需求盤點、素材規格、內容產出、客戶回覆與團隊訓練串成一套可複製流程。
-          </p>
-          <p>
-            透過顧問訪談、課程陪跑與工具整合，團隊可以更快建立內容產能、改善重複行政工作，並把 AI 變成真正能支援成交與服務的工作方式。
-          </p>
-        </div>
-      </section>
-
-      <section class="stats-band" aria-label="藍星科技服務重點">
-        <div class="shell stats-grid">
-          <article>
-            <strong>3 大</strong>
-            <span>AI 導入入口</span>
-          </article>
-          <article>
-            <strong>1 對 1</strong>
-            <span>需求盤點與陪跑</span>
-          </article>
-          <article>
-            <strong>7 天</strong>
-            <span>產出第一版流程</span>
-          </article>
-          <article>
-            <strong>24H</strong>
-            <span>表單需求快速回覆</span>
-          </article>
-        </div>
-      </section>
-
-      <section class="find-section" id="find">
-        <div class="shell find-layout">
-          <aside class="link-panel">
-            <h2>Links</h2>
-            <ul>
-              <li><a href="#contact">查詢顧問 <i data-lucide="arrow-right"></i></a></li>
-              <li><a href="#stories">服務場景 <i data-lucide="arrow-right"></i></a></li>
-              <li><a href="#newsletter">活動行事曆 <i data-lucide="arrow-right"></i></a></li>
-            </ul>
-          </aside>
-
-          <div class="banner-grid" id="links">
-            <a class="resource-card resource-one" href="#contact">
-              <span>AI 導入診斷</span>
-            </a>
-            <a class="resource-card resource-two" href="#stories">
-              <span>內容營運</span>
-            </a>
-            <a class="resource-card resource-three" href="#find">
-              <span>企業流程</span>
-            </a>
-            <a class="resource-card resource-four" href="#newsletter">
-              <span>藍星學院</span>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <section class="stories" id="stories">
-        <div class="shell">
-          <div class="section-head">
-            <p class="eyebrow">Member Stories</p>
-            <h2>適合導入藍星科技的常見場景</h2>
-          </div>
-          <div class="story-grid">
-            <article>
-              <i data-lucide="video"></i>
-              <h3>內容產能不足</h3>
-              <p>把產品賣點拆成腳本、貼文、圖片、短影音與發佈節奏，讓內容不再靠臨時靈感。</p>
+      <main id="top">
+        <section class="widget-slider" aria-label="首頁輪播">
+          <div class="carousel">
+            <article class="slide active" data-slide="0">
+              <div class="slide-bg slide-one"></div>
+              <div class="opacity-layer">
+                <div class="holder slider-text">
+                  <a class="invited-link" href="#chapter" data-open-getting>Get Invited</a>
+                </div>
+              </div>
             </article>
-            <article>
-              <i data-lucide="workflow"></i>
-              <h3>內部流程太慢</h3>
-              <p>把表單、回覆、資料整理與通知流程標準化，讓重複工作能被追蹤與複製。</p>
+            <article class="slide" data-slide="1" aria-hidden="true">
+              <div class="slide-bg slide-two"></div>
+              <div class="opacity-layer">
+                <div class="holder slider-text">
+                  <a class="invited-link" href="#chapter" data-open-getting>Get Invited</a>
+                </div>
+              </div>
             </article>
-            <article>
-              <i data-lucide="graduation-cap"></i>
-              <h3>團隊需要學會 AI</h3>
-              <p>用實際任務設計課程與陪跑，讓學員完成自己的第一套 AI 工作流。</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="newsletter" id="newsletter" aria-labelledby="newsletter-title">
-        <div class="shell newsletter-layout">
-          <div class="newsletter-art">
-            <i data-lucide="newspaper"></i>
-          </div>
-          <div>
-            <h2 id="newsletter-title">Newsletter</h2>
-            <p>訂閱藍星科技消息，取得 AI 工具、課程活動與導入提醒。</p>
-          </div>
-          <form class="subscribe-form" id="subscribe-form">
-            <label class="sr-only" for="email">電子信箱</label>
-            <input id="email" name="email" type="email" placeholder="電子郵件地址" required />
-            <button type="submit" aria-label="訂閱">
-              <i data-lucide="arrow-right"></i>
+            <button class="slider-arrow left" type="button" aria-label="上一張" data-prev-slide>
+              <i data-lucide="chevron-left"></i>
             </button>
-          </form>
-        </div>
-      </section>
+            <button class="slider-arrow right" type="button" aria-label="下一張" data-next-slide>
+              <i data-lucide="chevron-right"></i>
+            </button>
+            <ol class="carousel-indicators" aria-label="輪播頁籤">
+              <li><button class="active" type="button" data-slide-target="0" aria-label="第一張"></button></li>
+              <li><button type="button" data-slide-target="1" aria-label="第二張"></button></li>
+            </ol>
+          </div>
+        </section>
 
-      <section class="contact-section" id="contact">
-        <div class="shell contact-layout">
-          <div class="contact-copy">
-            <p class="eyebrow">Contact Us</p>
-            <h2>預約藍星科技 AI 諮詢</h2>
-            <p>留下你想改善的流程或內容需求，我們會回覆第一步建議。</p>
-            <div class="contact-methods">
-              <a href="tel:0970700419"><i data-lucide="phone"></i><span>0970-700-419</span></a>
-              <a href="https://lanxinai.com/dashboard" target="_blank" rel="noreferrer">
-                <i data-lucide="external-link"></i><span>藍星 AI 平台</span>
+        <section class="widget-page-header" id="why">
+          <div class="holder">
+            <h1>藍星科技 - 臺灣領先的 AI 導入與商務流程平台</h1>
+          </div>
+        </section>
+
+        <section class="widget-text-columns">
+          <div class="holder wysiwyg">
+            <p>
+              藍星科技是一家協助企業、講師與創作者導入 AI 的數位流程顧問團隊。我們的服務聚焦在內容營運、客戶回覆、表單流程、課程陪跑與自動化工具整合，讓每個團隊都能用更清楚的方式建立可複製的工作流程。
+            </p>
+            <p>
+              我們相信 AI 不該只停留在工具展示，而要進入實際業務。透過需求盤點、流程設計、模板建立與陪跑落地，藍星科技協助客戶把複雜工具轉換成可以每天使用的營運能力。
+            </p>
+            <p>藍星科技。改變企業導入 AI 的方式。</p>
+          </div>
+        </section>
+
+        <section class="widget-banners" id="chapter">
+          <div class="holder banner-layout">
+            <aside class="nav-two">
+              <h2>Links</h2>
+              <ul>
+                <li><a href="#contact">查詢顧問 <span><i data-lucide="arrow-right"></i></span></a></li>
+                <li><a href="#chapter">區域方案 <span><i data-lucide="arrow-right"></i></span></a></li>
+                <li><a href="#newsletter">活動行事曆 <span><i data-lucide="arrow-right"></i></span></a></li>
+              </ul>
+            </aside>
+            <div class="banner-grid">
+              <a class="banner-box banner-one" href="#chapter">
+                <span>藍星科技</span>
+              </a>
+              <a class="banner-box banner-two" href="#testimonials">
+                <span>Podcast</span>
+              </a>
+              <a class="banner-box banner-three" href="#contact">
+                <span>Foundation</span>
+              </a>
+              <a class="banner-box banner-four" href="#newsletter">
+                <span>Blue Star U</span>
               </a>
             </div>
           </div>
+        </section>
 
-          <form class="lead-form" id="lead-form">
-            <label>
-              <span>姓名</span>
-              <input name="name" type="text" autocomplete="name" required />
-            </label>
-            <label>
-              <span>聯絡方式</span>
-              <input name="contact" type="text" autocomplete="tel" required placeholder="電話或 LINE ID" />
-            </label>
-            <label>
-              <span>需求類型</span>
-              <select name="need" required>
-                <option value="">請選擇</option>
-                <option>AI 自媒體內容</option>
-                <option>企業流程自動化</option>
-                <option>AI 課程與內訓</option>
-                <option>網站與表單系統</option>
-              </select>
-            </label>
-            <label class="full">
-              <span>目前想解決的問題</span>
-              <textarea name="message" rows="4" required></textarea>
-            </label>
-            <button class="form-submit" type="submit">
-              <span>送出需求</span>
-              <i data-lucide="send"></i>
-            </button>
-            <p class="form-status" id="form-status" role="status"></p>
-          </form>
-        </div>
-      </section>
-    </main>
+        <section class="widget-newsletter" id="newsletter">
+          <div class="holder newsletter-outer">
+            <div class="newsletter-left">
+              <div class="newspaper-icon" aria-hidden="true">
+                <i data-lucide="newspaper"></i>
+              </div>
+            </div>
+            <div class="newsletter-right">
+              <h2>Newsletter</h2>
+              <p>訂閱我們的時事通訊，第一時間取得 AI 工具、商業流程、公開講座及課程活動資訊。</p>
+              <form class="newsletter-form" id="newsletter-form">
+                <input id="email" name="email" type="email" placeholder="郵件地址" required />
+                <button type="submit" aria-label="訂閱">
+                  <i data-lucide="arrow-right"></i>
+                </button>
+              </form>
+              <p class="newsletter-message" id="newsletter-message" role="status"></p>
+            </div>
+          </div>
+        </section>
 
-    <footer class="site-footer">
-      <div class="shell footer-layout">
-        <div>
-          <img src="assets/bluestar-logo.png" alt="藍星科技" />
-          <p>改變企業導入 AI 的方式。</p>
+        <section class="widget-testimonials" id="testimonials">
+          <div class="holder testimonial-layout">
+            <article>
+              <h2>會員見證</h2>
+              <p>內容品牌、企業團隊與課程講師都能透過藍星科技建立自己的 AI 工作流。</p>
+            </article>
+            <article>
+              <strong>內容營運</strong>
+              <span>把產品賣點延伸成腳本、圖片與短影音素材。</span>
+            </article>
+            <article>
+              <strong>企業流程</strong>
+              <span>將重複回覆、表單整理與通知流程標準化。</span>
+            </article>
+            <article>
+              <strong>課程陪跑</strong>
+              <span>用真實任務設計教學，讓學員完成第一套流程。</span>
+            </article>
+          </div>
+        </section>
+
+        <section class="contact-strip" id="contact">
+          <div class="holder contact-strip-inner">
+            <div>
+              <h2>聯絡我們</h2>
+              <p>想了解藍星科技如何協助你的團隊導入 AI，請先留下需求方向或直接撥打電話。</p>
+            </div>
+            <div class="contact-actions">
+              <a href="tel:0970700419"><i data-lucide="phone"></i>0970-700-419</a>
+              <a href="https://lanxinai.com/dashboard" target="_blank" rel="noreferrer">
+                <i data-lucide="external-link"></i>藍星 AI 平台
+              </a>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <div class="footer-nav-row">
+          <div class="holder footer-columns">
+            <ul>
+              <li><a href="#top">主頁</a></li>
+              <li><a href="#why">為什麼選擇藍星?</a></li>
+              <li><a href="#chapter">查找方案</a></li>
+              <li><a href="#testimonials">會員見證</a></li>
+            </ul>
+            <ul>
+              <li><a href="#contact">聯絡我們</a></li>
+              <li><a href="#links">查詢顧問</a></li>
+              <li><a href="#links">區域網站</a></li>
+              <li><a href="#newsletter">活動行事曆</a></li>
+            </ul>
+            <div class="footer-brand">
+              <img src="assets/bluestar-logo.png" alt="藍星科技" />
+            </div>
+          </div>
         </div>
-        <nav aria-label="頁尾導覽">
-          <a href="#why">為什麼選擇藍星</a>
-          <a href="#find">查找方案</a>
-          <a href="#stories">案例場景</a>
-          <a href="#contact">聯絡我們</a>
-        </nav>
-        <p class="copyright">© 2026 藍星科技. All rights reserved.</p>
-      </div>
-    </footer>
+        <div class="copyright-row">
+          <div class="holder">
+            <p><strong>© 2026 藍星科技。</strong> All Rights Reserved.</p>
+          </div>
+        </div>
+      </footer>
+
+      <nav class="mobile-menu" aria-label="手機導覽" data-mobile-menu>
+        <a href="#why">為什麼選擇藍星?</a>
+        <a href="#chapter">查找方案</a>
+        <a href="#testimonials">會員見證</a>
+        <a href="#contact">聯絡我們</a>
+      </nav>
+    </div>
 
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
     <script src="app.js"></script>
